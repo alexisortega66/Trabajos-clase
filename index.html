@@ -24,11 +24,11 @@
         ctx.fillStyle = '#5584f3';
         ctx.fillRect(30, 30, 100, 100);
 
-      /*  ctx.fillStyle = '#eb3d3d';
-        ctx.fillRect(110, 110, 100, 100);
-
-        ctx.fillStyle = '#FF5AEB';
-        ctx.fillRect(190, 190, 100, 100);*/
+        /*  ctx.fillStyle = '#eb3d3d';
+          ctx.fillRect(110, 110, 100, 100);
+  
+          ctx.fillStyle = '#FF5AEB';
+          ctx.fillRect(190, 190, 100, 100);*/
 
         //(x,y)
         //x es empuja hacia la derecha
@@ -48,29 +48,39 @@
         ctx.lineTo(230, 140);
         ctx.stroke();
         ctx.closePath();
-        
+
         ctx.beginPath();
-        ctx.arc(395,80,50,0, 2 * Math.PI);
+        ctx.arc(395, 80, 50, 0, 2 * Math.PI);
         ctx.fill();
         ctx.closePath();
 
         ctx.beginPath();
-        ctx.strokeStyle="red";
-        ctx.arc(395,190,50,0, 2 * Math.PI);
+        ctx.strokeStyle = "red";
+        ctx.arc(395, 190, 50, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.closePath();
 
-//6 - Utiliza font y fillText para realizar la siguiente figura.
-ctx.fillStyle = "black";
-ctx.font = "30px Georgia";
-ctx.fillText("Figuras", 285, 25);
-ctx.fillStyle = "#FF5AEB";
+        //6 - Utiliza font y fillText para realizar la siguiente figura.
+        ctx.fillStyle = "black";
+        ctx.font = "30px Georgia";
+        ctx.fillText("Figuras", 285, 25);
+        ctx.fillStyle = "#FF5AEB";
 
-ctx.font = "30px Georgia";
-ctx.fillText("Figuras", 285, 27);
-ctx.stroke();
+        ctx.font = "30px Georgia";
+        ctx.fillText("Figuras", 285, 27);
+        ctx.stroke();
 
+        //7- 
+        const grd = ctx.createLinearGradient(0, 200, 150, 0);
+        grd.addColorStop(0.2, '#47f2c5');
+        grd.addColorStop(0.5, '#FF5AEB');
+        grd.addColorStop(1, "#5584f3");
+
+        //dibujamos el rectangulo
+        ctx.fillStyle = grd;
+        ctx.fillRect(230, 260, 100, 100);
     </script>
+
 </body>
 
 </html>
