@@ -9,11 +9,17 @@
 
 <body>
     <canvas width="500" height="500" id="myCanvas">............</canvas>
+    <img src="imagen.png" id="img" width="300" height="307">
+
 
     <style>
         #myCanvas {
             border: 3px solid #000;
             margin: 3em;
+        }
+
+        #img {
+            display: none;
         }
     </style>
 
@@ -85,8 +91,18 @@
         grd2.addColorStop(0.5, '#5584f3');
         grd2.addColorStop(1, "#47f2c5");
 
-        ctx.fillStyle=grd2;
-        ctx.fillRect(350,260,100,100); 
+        ctx.fillStyle = grd2;
+        ctx.fillRect(350, 260, 100, 100);
+
+
+        //9 insertar imagen a canvas por medio de id
+        const img = document.getElementById('img');
+
+        img.onload = function () {
+            ctx.drawImage(img, 290, 380, 100, 100);
+        }
+
+
     </script>
 
 </body>
