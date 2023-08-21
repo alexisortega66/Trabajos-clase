@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <canvas width="500" height="500" id="myCanvas">Este elemento no está permitido en tu navegador</canvas>
+    <canvas width="500" height="500" id="myCanvas">............</canvas>
 
     <style>
         #myCanvas {
@@ -60,7 +60,15 @@
         ctx.stroke();
         ctx.closePath();
 
+//6 - Utiliza font y fillText para realizar la siguiente figura.
+ctx.fillStyle = "black";
+ctx.font = "30px Georgia";
+ctx.fillText("Figuras", 285, 25);
+ctx.fillStyle = "#FF5AEB";
 
+ctx.font = "30px Georgia";
+ctx.fillText("Figuras", 285, 27);
+ctx.stroke();
 
     </script>
 </body>
