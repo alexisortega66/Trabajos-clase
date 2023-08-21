@@ -70,15 +70,23 @@
         ctx.fillText("Figuras", 285, 27);
         ctx.stroke();
 
-        //7- 
+        //7- LinearGradient
         const grd = ctx.createLinearGradient(0, 200, 150, 0);
         grd.addColorStop(0.2, '#47f2c5');
         grd.addColorStop(0.5, '#FF5AEB');
         grd.addColorStop(1, "#5584f3");
 
-        //dibujamos el rectangulo
         ctx.fillStyle = grd;
         ctx.fillRect(230, 260, 100, 100);
+
+        // 8 - RadialGradient
+        const grd2 = ctx.createRadialGradient(400, 310, 15, 400, 310, 60);
+        grd2.addColorStop(0.2, '#CD88E8');
+        grd2.addColorStop(0.5, '#5584f3');
+        grd2.addColorStop(1, "#47f2c5");
+
+        ctx.fillStyle=grd2;
+        ctx.fillRect(350,260,100,100); 
     </script>
 
 </body>
