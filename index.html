@@ -146,91 +146,111 @@
                 //ctx.fillRect(e.layerX, e.layerY, 100,100); 
             })*/
 
-        /*Evento MouseOut - 14
-        let canvas = document.getElementById("myCanvas");
-    let ctx = canvas.getContext("2d");
-    var color;
-    let figura;
-
-    canvas.addEventListener("click", (e) => {
-        ctx.beginPath();
-        ctx.fillStyle = color;
-
-        if (figura) {
-            ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
-        } else {
-            ctx.fillRect(e.layerX, e.layerY, 80, 80);
-            ctx.strokeRect(e.layerX, e.layerY, 80, 80);
-        }
-
-        ctx.closePath();
-
-
-    });
-   
-    canvas.addEventListener("mouseout", (e) => {
-        function random_rgba() {
-            var o = Math.round, r = Math.random, s = 255;
-            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-        }
-
-        color = random_rgba();
-        figura = !figura;
-    })*/
-
-        //Evento Mouseup y MouseDown
-
+        //Evento MouseOut - 14
         let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
         var color;
-        ctx.strokeStyle = "#000";
         let figura;
-        let mousePressed;
-
-        function coloresrgba() {
-            var o = Math.round, r = Math.random, s = 255;
-            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-        }
-
-        canvas.addEventListener("mousemove", (e) => {
-            if (mousePressed) {
-                ctx.beginPath();
-                ctx.fillStyle = color;
-
-                if (figura) {
-                    ctx.arc(e.layerX, e.layerY, 4, 0, 2 * Math.PI);
-                    ctx.fill();
-                    ctx.stroke();
-                } else {
-                    ctx.fillRect(e.layerX, e.layerY, 8, 4);
-                    ctx.strokeRect(e.layerX, e.layerY, 8, 8);
-                }
-
-                ctx.closePath();
-                figura = !figura;
-                // color = random_rgba();
-            }
-        });
-
-        canvas.addEventListener("mouseup", (e) => {
-            ctx.arc(e.layerX, e.layerY, 30, 0, 2 * Math.PI);
-            ctx.fill();
-            ctx.stroke();
-            mousePressed = !mousePressed;
-        })
-
-        canvas.addEventListener("mousedown", (e) => {
+        var press =false;
+        canvas.addEventListener("click", (e) => {
             ctx.beginPath();
             ctx.fillStyle = color;
-            ctx.fillRect(e.layerX, e.layerY, 50, 50);
-            ctx.strokeRect(e.layerX, e.layerY, 50, 50);
+
+            if (figura) {
+                ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+            } else {
+                ctx.fillRect(e.layerX, e.layerY, 80, 80);
+                ctx.strokeRect(e.layerX, e.layerY, 80, 80);
+            }
+
             ctx.closePath();
+
+
+        });
+
+        canvas.addEventListener("mouseout", (e) => {
+            function coloresrgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
+
+            figura = !figura;
             color = coloresrgba();
 
-            mousePressed = !mousePressed;
-        });
+        })
+
+        canvas.addEventListener("mousemove", (event) => {
+            console.log("mousemovee");
+            if (press) {
+                ctx.beginPath();
+                ctx.arc(event.layerX, event.layerY, 3, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            }
+        })
+
+        canvas.addEventListener("mousedown", (event) => {
+            press = true;
+        })
+
+        canvas.addEventListener("mouseup", (event) => {
+            press = false;
+        })
+
+        //Evento Mouseup y MouseDown
+        /*
+                let canvas = document.getElementById("myCanvas");
+                let ctx = canvas.getContext("2d");
+                var color;
+                ctx.strokeStyle = "#000";
+                let figura;
+                let mousePressed;
+        
+                function coloresrgba() {
+                    var o = Math.round, r = Math.random, s = 255;
+                    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+                }
+        
+                canvas.addEventListener("mousemove", (e) => {
+                    if (mousePressed) {
+                        ctx.beginPath();
+                        ctx.fillStyle = color;
+        
+                        if (figura) {
+                            ctx.arc(e.layerX, e.layerY, 4, 0, 2 * Math.PI);
+                            ctx.fill();
+                            ctx.stroke();
+                        } else {
+                            ctx.fillRect(e.layerX, e.layerY, 8, 4);
+                            ctx.strokeRect(e.layerX, e.layerY, 8, 8);
+                        }
+        
+                        ctx.closePath();
+                        figura = !figura;
+                        // color = random_rgba();
+                    }
+                });
+        
+                canvas.addEventListener("mouseup", (e) => {
+                    ctx.arc(e.layerX, e.layerY, 30, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                    mousePressed = !mousePressed;
+                })
+        
+                canvas.addEventListener("mousedown", (e) => {
+                    ctx.beginPath();
+                    ctx.fillStyle = color;
+                    ctx.fillRect(e.layerX, e.layerY, 50, 50);
+                    ctx.strokeRect(e.layerX, e.layerY, 50, 50);
+                    ctx.closePath();
+                    color = coloresrgba();
+        
+                    mousePressed = !mousePressed;
+                });*/
 
     </script>
 
