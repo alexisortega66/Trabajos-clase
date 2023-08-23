@@ -102,7 +102,7 @@
             ctx.drawImage(img, 290, 380, 100, 100);
         }*/
 
-//Evento click - 12
+/*Evento click - 12
 let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
 
@@ -115,7 +115,36 @@ let canvas = document.getElementById("myCanvas");
         ctx.stroke();
         ctx.closePath();
 
-    })
+    }*/
+
+    //Evento MouseOver - 13
+    let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+        var color;
+        ctx.strokeStyle = "#000";
+    
+        canvas.addEventListener("click", (e) => {
+            ctx.beginPath();
+            ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.stroke();
+            ctx.closePath();
+    
+        });
+        canvas.addEventListener("mouseover", (e) => {
+            function coloresrgba() {
+
+                var o = Math.round, 
+                r = Math.random, 
+                s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
+           
+
+            color = coloresrgba();
+            //ctx.fillRect(e.layerX, e.layerY, 100,100); 
+        })
 
        /* let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
