@@ -117,7 +117,7 @@ let canvas = document.getElementById("myCanvas");
 
     }*/
 
-    //Evento MouseOver - 13
+    /*Evento MouseOver - 13
     let canvas = document.getElementById("myCanvas");
         let ctx = canvas.getContext("2d");
         var color;
@@ -144,7 +144,41 @@ let canvas = document.getElementById("myCanvas");
 
             color = coloresrgba();
             //ctx.fillRect(e.layerX, e.layerY, 100,100); 
-        })
+        })*/
+
+        //Evento MouseOut - 14
+        let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    var color;
+    let figura;
+
+    canvas.addEventListener("click", (e) => {
+        ctx.beginPath();
+        ctx.fillStyle = color;
+
+        if (figura) {
+            ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        } else {
+            ctx.fillRect(e.layerX, e.layerY, 80, 80);
+            ctx.strokeRect(e.layerX, e.layerY, 80, 80);
+        }
+
+        ctx.closePath();
+
+
+    });
+   
+    canvas.addEventListener("mouseout", (e) => {
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+
+        color = random_rgba();
+        figura = !figura;
+    })
 
        /* let canvas = document.getElementById("myCanvas");
     let ctx = canvas.getContext("2d");
