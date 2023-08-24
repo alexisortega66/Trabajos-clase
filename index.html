@@ -4,42 +4,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KeyDown</title>
+    <title>fillRect y fillStyle</title>
 </head>
 
 <body>
-    <canvas width="500" height="500" id="myCanvas">Este elemento no está permitido en tu navegador</canvas>
+    <canvas width="500" height="500" id="myCanvas">............</canvas>
+    <img src="imagen.png" id="img" width="300" height="307">
+
 
     <style>
         #myCanvas {
             border: 3px solid #000;
             margin: 3em;
         }
+
+        #img {
+            display: none;
+        }
     </style>
 
     <script>
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d')
-        var x = 255, y = 255;
-        document.addEventListener("keydown", (e) => {
+        /* const canvas = document.getElementById('myCanvas');
+         const ctx = canvas.getContext('2d')
+ 
+         ctx.fillStyle = '#5584f3';
+         ctx.fillRect(30, 30, 100, 100);
+ 
+           ctx.fillStyle = '#eb3d3d';
+           ctx.fillRect(110, 110, 100, 100);
+   
+           ctx.fillStyle = '#FF5AEB';
+           ctx.fillRect(190, 190, 100, 100);*/
+
+        //(x,y)
+        //x es empuja hacia la derecha
+        //y empuja hacia abajo
+        //moveTo es el primer punto
+        /* ctx.fillStyle = '#FF5AEB';
+ 
+         ctx.beginPath();
+         ctx.moveTo(285, 30); //primer punto
+         ctx.lineTo(345, 130); //de primer punto hacia la derecha
+         ctx.lineTo(215, 130);
+         ctx.fill();
+         ctx.closePath();
+ 
+         ctx.beginPath();
+         ctx.moveTo(300, 250); //primer punto
+         ctx.lineTo(230, 140);
+         ctx.stroke();
+         ctx.closePath();
+ 
+         ctx.beginPath();
+         ctx.arc(395, 80, 50, 0, 2 * Math.PI);
+         ctx.fill();
+         ctx.closePath();
+ 
+         ctx.beginPath();
+         ctx.strokeStyle = "red";
+         ctx.arc(395, 190, 50, 0, 2 * Math.PI);
+         ctx.stroke();
+         ctx.closePath();
+ 
+         //6 - Utiliza font y fillText para realizar la siguiente figura.
+         ctx.fillStyle = "black";
+         ctx.font = "30px Georgia";
+         ctx.fillText("Figuras", 285, 25);
+         ctx.fillStyle = "#FF5AEB";
+ 
+         ctx.font = "30px Georgia";
+         ctx.fillText("Figuras", 285, 27);
+         ctx.stroke();
+ 
+         //7- LinearGradient
+         const grd = ctx.createLinearGradient(0, 200, 150, 0);
+         grd.addColorStop(0.2, '#47f2c5');
+         grd.addColorStop(0.5, '#FF5AEB');
+         grd.addColorStop(1, "#5584f3");
+ 
+         ctx.fillStyle = grd;
+         ctx.fillRect(230, 260, 100, 100);
+ 
+         // 8 - RadialGradient
+         const grd2 = ctx.createRadialGradient(400, 310, 15, 400, 310, 60);
+         grd2.addColorStop(0.2, '#CD88E8');
+         grd2.addColorStop(0.5, '#5584f3');
+         grd2.addColorStop(1, "#47f2c5");
+ 
+         ctx.fillStyle = grd2;
+         ctx.fillRect(350, 260, 100, 100);
+ 
+ 
+         //9 insertar imagen a canvas por medio de id
+         const img = document.getElementById('img');
+ 
+         img.onload = function () {
+             ctx.drawImage(img, 290, 380, 100, 100);
+         }*/
+
+        /*Evento click - 12
+        let canvas = document.getElementById("myCanvas");
+            let ctx = canvas.getContext("2d");
+        
+            canvas.addEventListener("click", (e) => {
+                ctx.fillStyle = "rgba(20,100,220,.8)";
+              
+                ctx.beginPath();
+                ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+        
+            }*/
+
+        /*Evento MouseOver - 13
+        let canvas = document.getElementById("myCanvas");
+            let ctx = canvas.getContext("2d");
+            var color;
+            ctx.strokeStyle = "#000";
+        
+            canvas.addEventListener("click", (e) => {
+                ctx.beginPath();
+                ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+        
+            });
+            canvas.addEventListener("mouseover", (e) => {
+                function coloresrgba() {
+    
+                    var o = Math.round, 
+                    r = Math.random, 
+                    s = 255;
+                    return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+                }
+               
+    
+                color = coloresrgba();
+                //ctx.fillRect(e.layerX, e.layerY, 100,100); 
+            })*/
+
+        //Evento MouseOut - 14
+      /*  let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+        var color;
+        let figura;
+        var press =false;
+        canvas.addEventListener("click", (e) => {
+            ctx.beginPath();
+            ctx.fillStyle = color;
+
+            if (figura) {
+                ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+            } else {
+                ctx.fillRect(e.layerX, e.layerY, 80, 80);
+                ctx.strokeRect(e.layerX, e.layerY, 80, 80);
+            }
+
+            ctx.closePath();
 
 
-            x = Math.floor(Math.random() * 450);
-            y = Math.floor(Math.random() * 450);
-            ctx.fillStyle = random_rgba();
-            repaint();
+        });
+
+        canvas.addEventListener("mouseout", (e) => {
+            function coloresrgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
+
+            figura = !figura;
+            color = coloresrgba();
 
         })
-        function repaint() {
-            ctx.fillRect(x, y, 50, 50);
-            ctx.strokeRect(x, y, 50, 50);
 
-        }
-        function random_rgba() {
-            var o = Math.round, r = Math.random, s = 255;
-            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
-        }
+  */
+        //Evento Mouseup y MouseDown - 15
+        let canvas = document.getElementById("myCanvas");
+        let ctx = canvas.getContext("2d");
+        var color;
+        let figura;
+        var press =false;
+        canvas.addEventListener("click", (e) => {
+            ctx.beginPath();
+            ctx.fillStyle = color;
+
+            if (figura) {
+                ctx.arc(e.layerX, e.layerY, 50, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+            } else {
+                ctx.fillRect(e.layerX, e.layerY, 80, 80);
+                ctx.strokeRect(e.layerX, e.layerY, 80, 80);
+            }
+
+            ctx.closePath();
+
+
+        });
+
+        canvas.addEventListener("mouseout", (e) => {
+            function coloresrgba() {
+                var o = Math.round, r = Math.random, s = 255;
+                return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+            }
+
+            figura = !figura;
+            color = coloresrgba();
+
+        })
+
+       canvas.addEventListener("mousemove", (event) => {
+            console.log("mousemovee");
+            if (press) {
+                ctx.beginPath();
+                ctx.arc(event.layerX, event.layerY, 3, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                ctx.closePath();
+            }
+        })
+
+        canvas.addEventListener("mousedown", (event) => {
+            press = true;
+        })
+
+        canvas.addEventListener("mouseup", (event) => {
+            press = false;
+        })
+
     </script>
+
 </body>
 
 </html>
