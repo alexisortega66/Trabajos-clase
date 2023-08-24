@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KeyDown-frames</title>
+</head>
+
+<body>
+    <canvas width="500" height="500" id="myCanvas">Este elemento no está permitido en tu navegador</canvas>
+
+    <style>
+        #myCanvas {
+            border: 3px solid #000;
+            margin: 3em;
+        }
+    </style>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d')
+        var color = random_rgba();
+        var x = 255, y = 255;
+        document.addEventListener("keydown", (e) => {
+
+switch(e.keyCode){
+
+    case 87:
+    y-=10
+        break;
+        case 83:
+        y+=10
+
+        break;
+        case 65:
+        x-=10
+        break;
+        case 68:
+        x+=10
+        break;
+}
+
+repaint();
+            
+
+
+        })
+        function repaint() {
+           
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 500, 500);
+ctx.fillStyle=random_rgba();
+ctx.fillRect(x, y, 50, 50);
+ctx.strokeRect(x,y,50,50);
+      
+
+        }
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+    </script>
+</body>
+
+</html>
