@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frames</title>
+</head>
+
+<body>
+    <canvas width="500" height="500" id="myCanvas">.........................</canvas>
+
+    <style>
+        #myCanvas {
+            border: 3px solid #000;
+            margin: 3em;
+        }
+    </style>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d')
+        var color = random_rgba();
+        var x = 255, y = 255;
+        var speed = 5;
+        var dir = 0;
+        var t_x = Math.random() * (460) + 0;
+        var t_y = Math.random() * (460) + 0;
+
+        //var t_h, t_w = 40;
+        document.addEventListener("keydown", (e) => {
+            //ejercicio 26 - frames
+            switch (e.keyCode) {
+                case 87:
+                    dir = e.keyCode;
+                    //  y-=10
+                    break;
+                case 83:
+                    dir = e.keyCode
+                    //  y+=10
+                    break;
+                case 65:
+                    dir = e.keyCode;
+                    //   x-=10
+                    break;
+                case 68:
+                    dir = e.keyCode;
+                    //   x+=10
+                    break;
+            }
+            //  update();
+        })
+
+        function update() {
+            switch (dir) {
+                case 87:
+                    y -= speed
+                    if (y < -50) { y = 550 }
+                    break;
+                case 83:
+                    y += speed
+                    if (y > 500) { y = -50 }
+
+                    break;
+                case 65:
+
+                    x -= speed;
+                    if (x < -50) { x = 500 }
+
+                    break;
+                case 68:
+
+                    x += speed;
+                    if (x > 550) { x = -50 }
+
+                    break;
+            }
+
+
+            repaint();
+            window.requestAnimationFrame(update);
+
+        }
+
+        function repaint() {
+            ctx.fillStyle = "white";
+            ctx.fillRect(0, 0, 500, 500);
+            ctx.fillStyle = random_rgba();
+            ctx.fillRect(x, y, 50, 50);
+            ctx.strokeRect(x, y, 50, 50);
+            ctx.fillStyle = "black";
+            ctx.fillRect(t_x, t_y, 40, 40);
+            ctx.fillStyle = "gray";
+            ctx.fillRect(60, 60, 350, 50);
+
+           
+            if (x < t_x + 40 &&
+                x + 50 > t_x &&
+                y < t_y + 40 &&
+                y + 50 > t_y) 
+                {
+                //  dibujarCuadro();
+                t_x = Math.random() * (460) + 0;
+                t_y = Math.random() * (460) + 0;
+                speed+10;
+
+                console.log("hola");
+             }
+
+//obstaculos
+                if(x < 60 + 350 &&
+                  x + 50 > 60 &&   
+                   y < 60 + 50 &&    
+                   y + 50 > 60){
+
+                    switch (dir) {
+                case 87:
+                  //  dir = 0
+                      y+=10
+                    break;
+                case 83:
+              //  dir = 0                      
+                y-=10
+                    break;
+                case 65:
+             //   dir = 0                    
+                  x+=10
+                    break;
+                case 68:
+             //   dir = 0                    
+                 x-=10
+                    break;
+            }
+             }
+
+
+        }
+
+
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+        window.requestAnimationFrame(update);
+
+    </script>
+</body>
+
+</html>
