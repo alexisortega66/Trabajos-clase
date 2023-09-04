@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario</title>
+</head>
+
+<body>
+    <center><canvas width="580" height="400" id="myCanvas"
+            style="background-color: #a2f0ff">....................</canvas></center>
+
+    <style>
+        #myCanvas {
+            border: 3px solid #000;
+            margin: 3em;
+        }
+    </style>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+
+        //bloques
+        ctx.fillStyle = "#ff8954";
+        ctx.lineWidth = 4;
+        ctx.rect(100, 50, 40, 40);
+        ctx.rect(144, 50, 40, 40);
+        ctx.rect(10, 150, 40, 40);
+        ctx.rect(500, 130, 40, 40);
+        ctx.stroke();
+        ctx.fill();
+        //cuadritos de lo bloques
+        ctx.fillStyle = "black"
+        ctx.fillRect(105, 55, 5, 5);
+        ctx.fillRect(130, 55, 5, 5);
+        ctx.fillRect(105, 80, 5, 5);
+        ctx.fillRect(130, 80, 5, 5);
+
+        ctx.fillRect(173, 55, 5, 5);
+        ctx.fillRect(150, 55, 5, 5);
+        ctx.fillRect(173, 80, 5, 5);
+        ctx.fillRect(150, 80, 5, 5);
+
+        ctx.fillRect(15, 155, 5, 5);
+        ctx.fillRect(40, 155, 5, 5);
+        ctx.fillRect(15, 177, 5, 5);
+        ctx.fillRect(40, 177, 5, 5);
+
+        ctx.fillRect(530, 135, 5, 5);
+        ctx.fillRect(505, 135, 5, 5);
+        ctx.fillRect(530, 159, 5, 5);
+        ctx.fillRect(505, 159, 5, 5);
+
+
+
+        //bloques de colores
+        ctx.fillStyle = 'black';
+        ctx.fillRect(170, 230, 100, 120);
+        ctx.fillStyle = '#71c2ff';
+        ctx.lineWidth = 4;
+        ctx.fillRect(150, 200, 100, 150);
+        ctx.strokeRect(150, 200, 100, 150);
+        ctx.fillStyle = 'black';
+        ctx.fillRect(100, 280, 100, 70);
+        ctx.fillStyle = '#ffc0b5';
+        ctx.fillRect(80, 250, 100, 100);
+        ctx.strokeRect(80, 250, 100, 100);
+
+        ctx.fillStyle = "#00dd5b";
+        ctx.fillRect(500, 250, 100, 100);
+        ctx.strokeRect(500, 250, 100, 100);
+
+        //sombras de lo bloques de colores
+        ctx.fillStyle = "#0092e7";
+        ctx.fillRect(243, 202, 5, 146);
+        ctx.fillRect(200, 345, 48, 5);
+
+        ctx.fillStyle = "#ec9172";
+        ctx.fillRect(173, 252, 5, 96);
+        ctx.fillRect(82, 345, 96, 5);
+        ctx.fillStyle = "#005a14";
+        ctx.fillRect(502, 345, 96, 5);
+
+
+        //figuritas de los bloques de colores
+        ctx.fillStyle = "black";
+        ctx.fillRect(85, 260, 4, 7);
+        ctx.fillRect(96, 260, 4, 7);
+        ctx.fillRect(89, 256, 7, 4);
+        ctx.fillRect(89, 267, 7, 4);
+
+        ctx.fillRect(85, 330, 4, 7);
+        ctx.fillRect(96, 330, 4, 7);
+        ctx.fillRect(89, 326, 7, 4);
+        ctx.fillRect(89, 337, 7, 4);
+
+        ctx.fillRect(156, 260, 4, 7);
+        ctx.fillRect(167, 260, 4, 7);
+        ctx.fillRect(160, 256, 7, 4);
+        ctx.fillRect(160, 267, 7, 4);
+
+        ctx.fillRect(156, 330, 4, 7);
+        ctx.fillRect(167, 330, 4, 7);
+        ctx.fillRect(160, 326, 7, 4);
+        ctx.fillRect(160, 337, 7, 4);
+
+        ctx.fillRect(226, 330, 4, 7);
+        ctx.fillRect(237, 330, 4, 7);
+        ctx.fillRect(230, 326, 7, 4);
+        ctx.fillRect(230, 337, 7, 4);
+
+        ctx.fillRect(226, 210, 4, 7);
+        ctx.fillRect(237, 210, 4, 7);
+        ctx.fillRect(230, 206, 7, 4);
+        ctx.fillRect(230, 217, 7, 4);
+
+        ctx.fillRect(156, 210, 4, 7);
+        ctx.fillRect(167, 210, 4, 7);
+        ctx.fillRect(160, 206, 7, 4);
+        ctx.fillRect(160, 217, 7, 4);
+
+        ctx.fillRect(510, 260, 4, 7);
+        ctx.fillRect(521, 260, 4, 7);
+        ctx.fillRect(514, 256, 7, 4);
+        ctx.fillRect(514, 267, 7, 4);
+
+        ctx.fillRect(510, 330, 4, 7);
+        ctx.fillRect(521, 330, 4, 7);
+        ctx.fillRect(514, 326, 7, 4);
+        ctx.fillRect(514, 337, 7, 4);
+
+        //Tubo
+        var gradient1 = ctx.createLinearGradient(330, 280, 410, 280);
+        gradient1.addColorStop(0, 'palegreen');
+        gradient1.addColorStop(0.25, ' palegreen');
+        gradient1.addColorStop(0.5, '#006100');
+        gradient1.addColorStop(0.75, '#007c00');
+
+
+        ctx.fillStyle = gradient1;
+        ctx.fillRect(330, 280, 80, 70);
+        ctx.strokeStyle = 'black';
+        ctx.strokeRect(330, 280, 80, 70);
+
+        var gradient2 = ctx.createLinearGradient(320, 250, 420, 250);
+        gradient2.addColorStop(0, 'palegreen');
+        gradient2.addColorStop(0.25, 'palegreen');
+        gradient2.addColorStop(0.5, '#006100');
+        gradient2.addColorStop(0.75, '#007c00');
+
+
+        ctx.fillStyle = gradient2;
+        ctx.fillRect(320, 250, 100, 30);
+        ctx.strokeRect(320, 250, 100, 30);
+
+        //nubes
+        ctx.beginPath();
+        ctx.fillStyle = "#ffff";
+        ctx.arc(30, 40, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(60, 40, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(35, 60, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(450, 40, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(480, 60, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(485, 40, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        //arbol
+        ctx.beginPath();
+        ctx.lineWidth = 2;
+        ctx.fillStyle = "green";
+        ctx.arc(30, 330, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(20, 350, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(45, 350, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(30, 342, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+        //suelo
+        var gradient = ctx.createLinearGradient(0, 350, 0, 400);
+        gradient.addColorStop(0, ' #fc9559');
+        gradient.addColorStop(0.5, '#b16f3b');
+        gradient.addColorStop(1, '#b16f3b');
+
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 350, 600, 50);
+
+    </script>
+</body>
+
+</html>
