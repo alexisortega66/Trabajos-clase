@@ -24,12 +24,32 @@
         var x = 255, y = 255;
         var speed = 5;
         var dir = 0;
-        var t_x = Math.random() * (460) + 0;
-        var t_y = Math.random() * (460) + 0;
+        var t_x = Math.random() * (460) + 0, t_y = Math.random() * (460) + 0;
+        let arrayObstaculos = [];
+
+        class Rectangulo {
+            constructor(x, y, w, h) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+            }
+        }
+        const jugador = new Rectangulo(Math.random() * (460) + 0, Math.random() * (460) + 0, 50, 50);
+        const obstaculo1 = new Rectangulo(60, 60, 350, 50);
+        const obstaculo2 = new Rectangulo(60, 370, 350, 50);
+        arrayObstaculos.push(obstaculo1);
+        arrayObstaculos.push(obstaculo2);
+
+
+        /*
+        dibujarRectangulo(){
+        
+        
+        }*/
 
         //var t_h, t_w = 40;
         document.addEventListener("keydown", (e) => {
-            //ejercicio 26 - frames
             switch (e.keyCode) {
                 case 87:
                     dir = e.keyCode;
@@ -78,6 +98,8 @@
 
 
             repaint();
+            obstaculos();
+            comida();
             window.requestAnimationFrame(update);
 
         }
@@ -92,51 +114,52 @@
             ctx.fillRect(t_x, t_y, 40, 40);
             ctx.fillStyle = "gray";
             ctx.fillRect(60, 60, 350, 50);
+            ctx.fillStyle = "gray";
+            ctx.fillRect(60, 370, 350, 50);
+        }
 
-           
+        function obstaculos() {
+            if (x < 60 + 350 &&
+                x + 50 > 60 &&
+                y < 370 + 50 &&
+                y + 50 > 370 || x < 60 + 350 &&
+                x + 50 > 60 &&
+                y < 60 + 50 &&
+                y + 50 > 60) {
+
+                switch (dir) {
+                    case 87:
+                        //  dir = 0
+                        y += 10
+                        break;
+                    case 83:
+                        //  dir = 0                      
+                        y -= 10
+                        break;
+                    case 65:
+                        //   dir = 0                    
+                        x += 10
+                        break;
+                    case 68:
+                        //   dir = 0                    
+                        x -= 10
+                        break;
+                }
+            }
+        }
+        function comida() {
             if (x < t_x + 40 &&
                 x + 50 > t_x &&
                 y < t_y + 40 &&
-                y + 50 > t_y) 
-                {
+                y + 50 > t_y) {
                 //  dibujarCuadro();
                 t_x = Math.random() * (460) + 0;
                 t_y = Math.random() * (460) + 0;
-                speed+10;
+                speed + 10;
 
                 console.log("hola");
-             }
-
-//obstaculos
-                if(x < 60 + 350 &&
-                  x + 50 > 60 &&   
-                   y < 60 + 50 &&    
-                   y + 50 > 60){
-
-                    switch (dir) {
-                case 87:
-                  //  dir = 0
-                      y+=10
-                    break;
-                case 83:
-              //  dir = 0                      
-                y-=10
-                    break;
-                case 65:
-             //   dir = 0                    
-                  x+=10
-                    break;
-                case 68:
-             //   dir = 0                    
-                 x-=10
-                    break;
             }
-             }
-
-
         }
-
-
         function random_rgba() {
             var o = Math.round, r = Math.random, s = 255;
             return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
