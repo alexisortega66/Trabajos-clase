@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frames</title>
+</head>
+
+<body>
+    <canvas width="500" height="500" id="myCanvas">.........................</canvas>
+
+    <style>
+        #myCanvas {
+            border: 3px solid #000;
+            margin: 3em;
+        }
+    </style>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d')
+        //var color = random_rgba();
+        // var w_x = 100, w_y = 55;
+        var speed = 1;
+        var dir = 0;
+        // var t_x = Math.random() * (460) + 0;
+        //var t_y = Math.random() * (460) + 0;
+        let obstaculos = [];
+        let pause = false;
+        let score = 0;
+
+
+        class Rectangulo {
+            constructor(x, y, w, h, c) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.c = c;
+
+
+            }
+            paint(ctx) {
+                ctx.fillStyle = this.c;
+                ctx.fillRect(this.x, this.y, this.w, this.h);
+                ctx.strokeRect(this.x, this.y, this.w, this.h);
+
+            }
+            seTocan(target) {
+                if (this.x < target.x + target.w &&
+                    this.x + this.w > target.x &&
+                    this.y < target.y + target.h &&
+                    this.y + this.h > target.y) {
+                    return true;
+                }
+                return false;
+
+            }
+        }
+
+        const player = new Rectangulo(255, 255, 50, 50, "black");
+        const target = new Rectangulo(350, 350, 40, 40, "black");
+        obstaculos.push(new Rectangulo(65, 50, 360, 50, "gray"));
+        obstaculos.push(new Rectangulo(65, 410, 360, 50, "gray"));
+
+
+        //var t_h, t_w = 40;
+        document.addEventListener("keydown", (e) => {
+            //ejercicio 26 - frames
+            switch (e.keyCode) {
+                case 87:
+                    if (!pause) dir = e.keyCode;
+                    //  y-=10
+                    break;
+                case 83:
+                    if (!pause) dir = e.keyCode;
+                    //  y+=10
+                    break;
+                case 65:
+                    if (!pause) dir = e.keyCode;
+                    //   x-=10
+                    break;
+                case 68:
+                    if (!pause) dir = e.keyCode;
+                    //   x+=10
+                    break;
+                case 32:
+                    //dir=
+                    pause = !pause;
+                    break;
+            }
+        })
+
+        function update() {
+            if (!pause) {
+                switch (dir) {
+                    case 87:
+                        player.y -= speed;
+                        if (player.y < -50) { player.y = 550 }
+                        break;
+                    case 83:
+                        player.y += speed;
+                        if (player.y > 500) { player.y = -50 }
+                        break;
+                    case 65:
+                        player.x -= speed;
+                        if (player.x < -50) { player.x = 500 }
+                        break;
+                    case 68:
+                        player.x += speed;
+                        if (player.x > 550) { player.x = -50 }
+
+                        break;
+                }
+
+                if (player.seTocan(target)) {
+                    target.x = Math.random() * (460) + 0;
+                    target.y = Math.random() * (460) + 0;
+                    speed += 1;
+                    score += 10;
+
+                }
+                for (var i = obstaculos.length - 1; i >= 0; i--) {
+                    if (player.seTocan(obstaculos[i])) {
+                        switch (dir) {
+                            case 87:
+                                //  dir = 0
+                                player.y += speed;
+                                break;
+                            case 83:
+                                //  dir = 0                      
+                                player.y -= speed;
+                                break;
+                            case 65:
+                                //   dir = 0                    
+                                player.x += speed;
+                                break;
+                            case 68:
+                                //   dir = 0                    
+                                player.x -= speed;
+                                break;
+
+                        }
+                        dir = 0;
+                    }
+                }
+
+            }
+            repaint();
+            window.requestAnimationFrame(update);
+
+        }
+
+        function repaint() {
+            if (!pause) {
+                ctx.fillStyle = "white";
+                ctx.fillRect(0, 0, 500, 500);
+                ctx.font = "20px Verdana";
+                ctx.fillStyle = "black";
+                ctx.fillText("SCORE: " + score, 10, 25)
+                player.c = random_rgba();
+                player.paint(ctx);
+
+                target.paint(ctx);
+
+                for (var i = obstaculos.length - 1; i >= 0; i--) {
+                    obstaculos[i].paint(ctx);
+
+                }
+            } else {
+                ctx.fillStyle = "rgba(154,160,154,0.020)";
+                ctx.fillRect(0, 0, 500, 500);
+
+                ctx.font = "30px Verdana";
+                ctx.fillStyle = "black";
+                ctx.fillText("P A U S E", 175, 230)
+            }
+        }
+        function random_rgba() {
+            var o = Math.round, r = Math.random, s = 255;
+            return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+        }
+
+        window.requestAnimationFrame = (function () {
+            return window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                function (callback) {
+                    window.setTimeout(callback, 17);
+                };
+        }());
+        window.requestAnimationFrame(update);
+
+    </script>
+</body>
+
+</html>
