@@ -29,6 +29,14 @@
         let obstaculos = [];
         let pause = false;
         let score = 0;
+        let image = new Image();
+        image.src = "oso-panda.png";
+        let comida = new Image();
+        comida.src = "bambu.png"; 
+
+        let audio = new Audio();
+        audio.src = "point.mp3";
+
 
 
         class Rectangulo {
@@ -119,6 +127,7 @@
                     target.y = Math.random() * (460) + 0;
                     speed += 1;
                     score += 10;
+                    audio.play();
 
                 }
                 for (var i = obstaculos.length - 1; i >= 0; i--) {
@@ -160,9 +169,12 @@
                 ctx.fillStyle = "black";
                 ctx.fillText("SCORE: " + score, 10, 25)
                 player.c = random_rgba();
-                player.paint(ctx);
+                //player.paint(ctx);
+                ctx.drawImage(image, player.x, player.y,50,50);
 
-                target.paint(ctx);
+                //target.paint(ctx);
+                ctx.drawImage(comida, target.x, target.y,40,40);
+
 
                 for (var i = obstaculos.length - 1; i >= 0; i--) {
                     obstaculos[i].paint(ctx);
