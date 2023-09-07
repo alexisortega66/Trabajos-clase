@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Ajedrez</title>
+
+</head>
+<body>
+    <center><canvas width="600" height="450" id="myCanvas"
+        style="background-color: #2000a0">....................</canvas></center>
+
+
+    <script>
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+        image = new Image();
+        image.src = "Green_Hill_Zone_(Sonic_the_Hedgehog).png";
+
+        
+
+        //cuadros
+        const casillaSize = canvas.width / 24;
+        const colors = ["#b55900", "#602000"]; // Marrón oscuro y marrón claro
+
+        for (let row = 14; row < 24; row++) {
+            for (let col = 0; col < 24; col++) {
+                const colorIndex = (row + col) % 2;
+                ctx.fillStyle = colors[colorIndex];
+                ctx.fillRect(col * casillaSize, row * casillaSize, casillaSize, casillaSize);
+            }
+        }
+        //suelo
+        ctx.fillStyle = "#80e000"
+        ctx.fillRect(0, 325, 600, 15);
+
+        ctx.fillStyle = "#40a000"
+        ctx.fillRect(0, 340, 600, 15);
+
+        ctx.fillStyle = "#006000"
+        ctx.fillRect(0, 355, 600, 15);
+        
+        ctx.fillStyle = "rgba(0, 0, 0, .5)";
+        ctx.fillRect(0, 370, 600, 25);
+
+       // ctx.fillStyle = "#ffff00"
+       
+       //monedas
+       ctx.lineWidth = 4;
+        ctx.strokeStyle = "#ffff00";
+
+        ctx.beginPath();
+        ctx.arc(60, 290, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(160, 290, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(260, 290, 20, 0, 2 * Math.PI);
+    ctx.stroke();
+        ctx.closePath();
+
+
+        const numLines = 40; // Número de líneas
+        const boxSize = 90;
+        const xOffset = 300;
+
+
+        // Función para generar números aleatorios en un rango específico
+        function getRandom(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        // Dibuja líneas diagonales aleatorias hacia la izquierda
+        ctx.strokeStyle = '#80e000'; // Color de las líneas (negro)
+
+        for (let i = 0; i < numLines; i++) {
+            const x1 = getRandom(5, boxSize - 5); // Coordenada X de inicio
+            const y1 = getRandom(5, boxSize - 5); // Coordenada Y de inicio
+            const x2 = getRandom(5, boxSize - 5); // Coordenada X de fin
+            const y2 = getRandom(5, boxSize - 5); // Coordenada Y de fin
+
+            ctx.beginPath();
+            ctx.moveTo(100, 120);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        // Dibuja líneas diagonales aleatorias hacia la derecha
+        for (let i = 0; i < numLines; i++) {
+            const x1 = getRandom(boxSize - 5, boxSize * 2 - 5); // Coordenada X de inicio
+            const y1 = getRandom(5, boxSize - 5); // Coordenada Y de inicio
+            const x2 = getRandom(boxSize - 5, boxSize * 2 - 5); // Coordenada X de fin
+            const y2 = getRandom(5, boxSize - 5); // Coordenada Y de fin
+
+            ctx.beginPath();
+            ctx.moveTo(100,120);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        for (let i = 0; i < numLines; i++) {
+            const x1 = xOffset + getRandom(5, boxSize - 5); // Coordenada X de inicio
+            const y1 = getRandom(5, boxSize - 5); // Coordenada Y de inicio
+            const x2 = xOffset + getRandom(5, boxSize - 5); // Coordenada X de fin
+            const y2 = getRandom(5, boxSize - 5); // Coordenada Y de fin
+
+            ctx.beginPath();
+            ctx.moveTo(400, 120);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        // Dibuja líneas diagonales aleatorias hacia la derecha
+        for (let i = 0; i < numLines; i++) {
+            const x1 = xOffset + getRandom(boxSize - 5, boxSize * 2 - 5); // Coordenada X de inicio
+            const y1 = getRandom(5, boxSize - 5); // Coordenada Y de inicio
+            const x2 = xOffset + getRandom(boxSize - 5, boxSize * 2 - 5); // Coordenada X de fin
+            const y2 = getRandom(5, boxSize - 5); // Coordenada Y de fin
+
+            ctx.beginPath();
+            ctx.moveTo(400, 120);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        //tronco de palmera
+        ctx.fillStyle = "#814000"
+        ctx.fillRect(90, 110, 10, 215);
+        ctx.fillRect(390, 110, 10, 215);
+
+        ctx.fillStyle = "#3fa000"
+        ctx.fillRect(510, 270, 10, 55);
+
+     
+
+        
+      //girasol
+        ctx.fillStyle = '#dfda31'; // Color dorado para los pétalos
+        for (let i = 0; i < 8; i++) {
+            const angle = (i * 360 / 8) * (Math.PI / 180);
+            const x = 515 + 15 * Math.cos(angle);
+            const y = 260 + 15 * Math.sin(angle);
+
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        ctx.beginPath();
+        ctx.fillStyle = "#466126";
+        ctx.arc(515, 260, 20, 0, 2 * Math.PI);
+        ctx.fill();
+        ctx.closePath();
+
+  
+    </script>
+</body>
+</html>
