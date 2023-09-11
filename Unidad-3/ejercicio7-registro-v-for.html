@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-7</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+
+        <ul>
+            <li v-for="item in persons">
+                {{item.name}}-{{item.lastname}}
+            </li>
+        </ul>
+
+        <form>
+            <fieldset>
+                <legend>
+                    Nombre
+                </legend>
+                <input type="text" v-model="username" name="">
+            </fieldset>
+
+            <fieldset>
+                <legend>
+                    Apellido
+                </legend>
+                <input type="text" v-model="lastname" name="">
+            </fieldset>
+
+            <button type="button" v-on:click="addPerson">Guardar</button>
+
+        </form>
+    </div>
+    <script type="module">
+        const { createApp, ref } = Vue
+        createApp({
+            setup() {
+
+                const username = ref('');
+                const lastname = ref('');
+                const persons = ref([]);
+                return {
+                    //  count: ref(0),
+
+                    username,
+                    lastname,
+                    persons
+                }
+            },
+            methods: {
+                addPerson() {
+                    const person = {
+                        name: this.username,
+                        lastname: this.lastname
+
+                    }
+                    this.persons.push(person)
+                    console.log("Hola crayola")
+                    console.log(this.username)
+                    console.log(this.lastname)
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
