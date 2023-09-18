@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-11</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <form>
+            <fieldset>
+                <legend>Email</legend>
+                <input type="text" name="email" v-model="email">
+            </fieldset>
+            <fieldset>
+                <legend>Password</legend>
+                <input type="password" name="password" v-model="password">
+            </fieldset>
+            <button @click="login" type="button">Ingresar</button>
+
+        </form>
+    </div>
+    <script type="module">
+        const { createApp, ref } = Vue
+        createApp({
+            setup() {
+                const users = ref([]);
+                const email = ref('');
+                const password = ref('');
+                return {
+                    users,
+                    email,
+                    password
+
+                }
+            },
+            methods: {
+                async login() {
+                    //1-traer los datos
+                    const response = await fetch("user.json");
+                    const user = await response.json();                    
+                    //2- recorrer los datos
+                    let login = false
+                    user.forEach((user) => {
+                        if (this.email == user.email) {
+                            if (this.password == user.password) {
+                                alert("Bienvenido");
+                                login = true;
+                            }
+                        }
+                        if (!login) {
+                            alert("Datos incorrectos");
+
+                        }
+
+                    });
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
