@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio-12</title>
+</head>
+
+<body>
+    <style>
+        table.customTable {
+            width: 100%;
+            background-color: #FFFFFF;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #30F811;
+            border-style: solid;
+            color: #000000;
+        }
+
+        table.customTable td,
+        table.customTable th {
+            border-width: 2px;
+            border-color: #30F811;
+            border-style: solid;
+            padding: 5px;
+        }
+
+        table.customTable thead {
+            background-color: #30F811;
+        }
+    </style>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <div id="app">
+        <form action="" v-if="!is_Login">
+            <fieldset>
+                <legend>Email</legend>
+                <input type="text" name="email" v-model="email">
+            </fieldset>
+            <fieldset>
+                <legend>Password</legend>
+                <input type="password" name="password" v-model="password">
+            </fieldset>
+            <button @click="login" type="button">Ingresar</button>
+        </form>
+        <table class="customTable" v-if="is_Login">
+            <thead>
+                <tr>
+                    <th>Datos personales</th>
+                    <th>Datos de contacto</th>
+                    <th>Datos de compañia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="u in users">
+                    <td>{{u.name}}, {{u.username}}</td>
+                    <td>{{u.email}}, {{u.phone}}</td>
+                    <td>{{u.company.name}}, {{u.company.name}}</td>
+                </tr>
+
+            </tbody>
+        </table>
+        <!-- Generated at CSSPortal.com -->
+
+
+
+    </div>
+
+    <script type="text/javascript">
+        const { createApp, ref } = Vue
+        createApp({
+            setup() {
+                 users = ref([]);
+                 email = ref('mortega_20@alu.uabcs.mx');
+                 password = ref('1234');
+                let tmp = localStorage.getItem("is_Login");
+                if (tmp == null) {
+                    tmp=false
+                }
+                is_Login = ref(tmp)
+
+                return {
+                    users,
+                    email,
+                    password,
+                    is_Login
+
+
+                }
+            },
+            mounted: function () {
+                const getUsers = async () => {
+
+                    const response = await fetch("user.json?v=1.1");
+                    const tmp_users = await response.json();
+                    this.users = tmp_users;
+                }
+                if(this.is_Login){
+                    getUsers()
+                }
+            },
+            methods: {
+        async login() {
+            const response = await fetch("user.json?v=1.1");
+this.users = await response.json()
+          this.is_Login = false;
+          this.users.forEach((user) => {
+            if (this.email == user.email) {
+              if (this.password == user.password) {
+                this.is_Login = true;
+                alert("bienvenido");
+                localStorage.setItem("is_Login", "true");
+                localStorage.setItem("user_data", JSON.stringify(user));
+              }
+            }
+          });
+          if(!this.is_Login){
+            alert("Datos Incorrectos")
+          }
+        },
+      },
+    }).mount("#app");
+    </script>
+</body>
+
+</html>
