@@ -1,0 +1,38 @@
+@mainColor: #D05;
+@textColor: #FE3CFE;
+@colors: #EC3DD7,#FE863C,#FEFB3C,#A4FE3C,#3CC8FE;
+
+.colorear-lista(@items; @i: 1) when (@i =<@items){
+.item-@{i}{
+background-color: extract(@colors,@i);
+border-style: dotted;
+border-width: 1px;
+}
+.colorear-lista(@items, (@i+1) )
+
+}
+body{
+background-color: white;  
+
+    .contenedor{
+        margin:  auto;
+        width: 50%;
+       
+        form{
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: #3CC8FE;
+            background-color: @mainColor;
+            
+            legend{
+                color: @textColor;
+            }
+            fieldset{
+                ul{
+                    .colorear-lista(5);
+               }
+            }
+        }
+
+    }
+}

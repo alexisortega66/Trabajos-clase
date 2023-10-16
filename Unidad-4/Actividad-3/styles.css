@@ -1,0 +1,41 @@
+body {
+  background-color: white;
+}
+body .contenedor {
+  margin: auto;
+  width: 50%;
+}
+body .contenedor form {
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: #3CC8FE;
+  background-color: #D05;
+}
+body .contenedor form legend {
+  color: #FE3CFE;
+}
+body .contenedor form fieldset ul .item-1 {
+  background-color: #EC3DD7;
+  border-style: dotted;
+  border-width: 1px;
+}
+body .contenedor form fieldset ul .item-2 {
+  background-color: #FE863C;
+  border-style: dotted;
+  border-width: 1px;
+}
+body .contenedor form fieldset ul .item-3 {
+  background-color: #FEFB3C;
+  border-style: dotted;
+  border-width: 1px;
+}
+body .contenedor form fieldset ul .item-4 {
+  background-color: #A4FE3C;
+  border-style: dotted;
+  border-width: 1px;
+}
+body .contenedor form fieldset ul .item-5 {
+  background-color: #3CC8FE;
+  border-style: dotted;
+  border-width: 1px;
+}
