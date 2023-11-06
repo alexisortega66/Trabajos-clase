@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,6 @@ Route::get('/multiplicacion/{n1}/{n2}', function ($n1,$n2) {
 Route::get('/division/{n1}/{n2}', function ($n1,$n2) {
     return 'El resultado es: '.$n1/$n2;
 }) ->where(['n1'=>'[0-9]+', 'n2'=>'[0-9]+']);
+
+Route::get('/user', [UserController::class, 'index']);
+
