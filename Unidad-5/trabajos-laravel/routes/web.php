@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/greeting/{nombre?}', function ($nombre="alexis") {
+    return view('ejemplo',['nombre' => $nombre]);
+});
+
+Route::get('/saludo/{nombre}/{apellido?}', function ($nombre, $apellido="") {
+    return 'Hola '.$nombre. ' '.$apellido;
+}) ->where(['nombre'=>'[a-z]+', 'apellido'=>'[a-z]+']);
+
+Route::get('/suma/{n1}/{n2}', function ($n1,$n2) {
+    return 'El resultado es: '.$n1+$n2;
+}) ->where(['n1'=>'[0-9]+', 'n2'=>'[0-9]+']);
+Route::get('/resta/{n1}/{n2}', function ($n1,$n2) {
+    return 'El resultado es: '.$n1-$n2;
+}) ->where(['n1'=>'[0-9]+', 'n2'=>'[0-9]+']);
+Route::get('/multiplicacion/{n1}/{n2}', function ($n1,$n2) {
+    return 'El resultado es: '.$n1*$n2;
+}) ->where(['n1'=>'[0-9]+', 'n2'=>'[0-9]+']);
+Route::get('/division/{n1}/{n2}', function ($n1,$n2) {
+    return 'El resultado es: '.$n1/$n2;
+}) ->where(['n1'=>'[0-9]+', 'n2'=>'[0-9]+']);
